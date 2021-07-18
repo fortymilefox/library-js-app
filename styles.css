@@ -1,12 +1,27 @@
+
 body {
-  text-align: center;
-  padding: 20px;
+  display: flex;
+  justify-content:flex-start;
+  height: 100%;
 }
 
-#sidebar {
-  height: 100%;
-  width: 300px;
-  position: fixed;
-  z-index: 1;
 
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start left;
+  width: 250px;
+  padding: 20px 0 0 10px;
+  
+}
+
+#main-content{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.75;
+  padding: 0 0 0 3em;
+}
+
+#title {
+align-items: center;
 }
