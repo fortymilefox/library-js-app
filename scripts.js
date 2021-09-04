@@ -31,8 +31,25 @@ function viewLibrary() {
     entryRow.appendChild(bookPages);
 
     //Read
-    const bookRead = document.createElement('td');
-    bookRead.
+    const readStatus= document.createElement('td');
+    const bookRead = document.createElement('button');
+    if (myLibrary[i].read === false) {
+      bookRead.classList.add('button-small-unread');
+      bookRead.textContent = 'Unread'
+    } else {
+      bookRead.classList.add('button-small');
+      bookRead.textContent = 'Read';
+    }
+    readStatus.appendChild(bookRead);
+    entryRow.appendChild(readStatus);
+
+    //Trash
+    const bookDelete = document.createElement('td');
+    const trashIcon = document.createElement('a');
+    trashIcon.innerHTML = '<i class="fas fa-trash"></i>';
+    bookDelete.appendChild(trashIcon);
+    entryRow.appendChild(bookDelete);
+    
   }
 }
 
@@ -41,10 +58,21 @@ function addBookToLibrary(title, author, pages, read){
   myLibrary.push(book);
   viewLibrary();
   //console.log(myLibrary);
-  
+}
+
+function removeBookFromLibrary() {
+  document.addEventListener('click', (event) => {
+    const {target} = event;
+    const tr = target.parentNode.parentNode.rowIndex - 1;
+    if (target.classList.contains("fa-trash")){
+      myLibrary.splice(tr,1);
+    }
+    viewLibrary();
+  })
 }
 
 
 //viewLibrary();
-addBookToLibrary('Jane Eyre', 'Charlotte Bronte', '532', 'read');
-
+addBookToLibrary('Jane Eyre', 'Charlotte Bronte', '532', true);
+addBookToLibrary('Braiding Sweetgrass', 'Robin Wall Kimmerer', '391', false);
+removeBookFromLibrary();
